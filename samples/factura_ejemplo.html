@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+  DATOS COMPLETAMENTE FICTICIOS — FOR TESTING ONLY
+  Open in a browser and use "Print → Save as PDF" to get a test PDF.
+  This exercises: calcular_iva (base 2500 @ 21%), proximo_plazo_modelo (303), buscar_modelo (303).
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Factura FAC-2025-042 — EJEMPLO FICTICIO</title>
+<style>
+  @media print { .watermark { opacity: .06; } }
+  body { font-family: Arial, sans-serif; font-size: 13px; color: #1e293b; max-width: 720px; margin: 40px auto; padding: 0 24px; }
+  .watermark {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-35deg);
+    font-size: 96px; font-weight: 900; color: #dc2626; opacity: .07;
+    pointer-events: none; white-space: nowrap; z-index: 0;
+  }
+  .badge {
+    background: #fef2f2; border: 2px solid #fca5a5; color: #991b1b;
+    text-align: center; padding: 8px; font-weight: 700; font-size: 13px;
+    border-radius: 6px; margin-bottom: 24px; letter-spacing: .03em;
+  }
+  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; }
+  .company h2 { font-size: 1.25rem; font-weight: 700; color: #1d4ed8; margin-bottom: 4px; }
+  .company p  { color: #64748b; font-size: 12px; line-height: 1.6; }
+  .invoice-meta { text-align: right; }
+  .invoice-meta h1 { font-size: 1.6rem; font-weight: 800; color: #1d4ed8; margin-bottom: 6px; }
+  .invoice-meta p  { font-size: 12px; color: #64748b; line-height: 1.6; }
+  .parties { display: flex; gap: 40px; margin-bottom: 32px; padding: 16px; background: #f8fafc; border-radius: 8px; }
+  .party h4 { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: #94a3b8; margin-bottom: 8px; }
+  .party p  { font-size: 13px; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+  thead th { background: #1d4ed8; color: #fff; padding: 10px 12px; text-align: left; font-size: 12px; }
+  thead th:last-child { text-align: right; }
+  tbody td { padding: 10px 12px; border-bottom: 1px solid #e2e8f0; font-size: 13px; }
+  tbody td:last-child { text-align: right; }
+  .totals { margin-left: auto; width: 280px; }
+  .totals tr td { padding: 6px 12px; font-size: 13px; }
+  .totals tr td:first-child { color: #64748b; }
+  .totals tr td:last-child  { text-align: right; font-weight: 600; }
+  .totals .grand td { font-size: 15px; font-weight: 700; color: #1d4ed8; border-top: 2px solid #1d4ed8; padding-top: 10px; }
+  .footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; line-height: 1.7; }
+  .note { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 10px 14px; font-size: 12px; color: #92400e; margin-top: 20px; border-radius: 0 6px 6px 0; }
+</style>
+</head>
+<body>
+
+<div class="watermark">FICTICIO</div>
+
+<div class="badge">⚠ DATOS COMPLETAMENTE FICTICIOS — FOR TESTING ONLY — NO USAR PARA FINES FISCALES</div>
+
+<!-- Header -->
+<div class="header">
+  <div class="company">
+    <h2>ACME Consulting S.L.</h2>
+    <p>
+      CIF: B12345678 (ficticio)<br>
+      Calle Gran Vía 42, 2º B<br>
+      28013 Madrid, España<br>
+      info@acme-ejemplo.test
+    </p>
+  </div>
+  <div class="invoice-meta">
+    <h1>FACTURA</h1>
+    <p>
+      <strong>Número:</strong> FAC-2025-042<br>
+      <strong>Fecha de emisión:</strong> 15 de octubre de 2025<br>
+      <strong>Fecha de vencimiento:</strong> 14 de noviembre de 2025<br>
+      <strong>Régimen:</strong> Régimen General IVA
+    </p>
+  </div>
+</div>
+
+<!-- Parties -->
+<div class="parties">
+  <div class="party">
+    <h4>Emisor (Proveedor)</h4>
+    <p>
+      <strong>ACME Consulting S.L.</strong><br>
+      CIF: B12345678 (ficticio)<br>
+      Madrid, España
+    </p>
+  </div>
+  <div class="party">
+    <h4>Receptor (Cliente)</h4>
+    <p>
+      <strong>Jan de Vries</strong><br>
+      NIE: X1234567Z (ficticio)<br>
+      Calle Ejemplo 10, 1º<br>
+      08001 Barcelona, España
+    </p>
+  </div>
+</div>
+
+<!-- Line items -->
+<table>
+  <thead>
+    <tr>
+      <th>Concepto</th>
+      <th>Unidades</th>
+      <th>Precio unitario</th>
+      <th>Importe</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Consultoría fiscal — 4T 2025<br>
+        <span style="font-size:11px;color:#64748b">Asesoramiento Modelo 303 (IVA trimestral) y obligaciones IRPF</span>
+      </td>
+      <td>1</td>
+      <td>2.500,00 €</td>
+      <td>2.500,00 €</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Totals -->
+<table class="totals">
+  <tbody>
+    <tr><td>Base imponible</td><td>2.500,00 €</td></tr>
+    <tr><td>IVA (21 %)</td><td>525,00 €</td></tr>
+    <tr><td>Retención IRPF (15 %)</td><td>− 375,00 €</td></tr>
+    <tr class="grand"><td>TOTAL A PAGAR</td><td>2.650,00 €</td></tr>
+  </tbody>
+</table>
+
+<!-- Note -->
+<div class="note">
+  <strong>Modelo fiscal relevante:</strong> Modelo 303 — IVA trimestral 4T 2025.<br>
+  La empresa emisora debe presentar el Modelo 303 correspondiente al 4T 2025 antes del <strong>30 de enero de 2026</strong>.
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>Forma de pago: Transferencia bancaria · IBAN: ES00 0000 0000 0000 0000 0000 (ficticio)</p>
+  <p>Este documento es un ejemplo ficticio generado para pruebas. No tiene validez fiscal ni legal.</p>
+</div>
+
+</body>
+</html>

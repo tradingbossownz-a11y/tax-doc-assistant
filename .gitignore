@@ -1,0 +1,16 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Uploaded test docs (don't commit real client documents)
+uploads/
+samples/private/
+
+# OS
+.DS_Store
