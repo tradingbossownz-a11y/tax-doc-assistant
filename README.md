@@ -1,5 +1,7 @@
 # Tax Document Assistant 🇪🇸
 
+![Tax Document Assistant](docs/screenshot.png)
+
 A focused **GenAI agent** that reads a single Spanish tax document (invoice, payslip, *certificado de retenciones*…) and answers questions about it — calling real tools to compute IVA and look up filing deadlines as it reasons.
 
 > Built to demonstrate **agentic tool-calling** and **grounded document Q&A** with the Anthropic API.
